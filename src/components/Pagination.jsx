@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button} from "@material-ui/core";
+import {Button, ButtonGroup} from "@material-ui/core";
 
 const Pagination = ({albumsPerPage, totalAlb, paginate}) => {
     const pageNumber = [];
@@ -7,11 +7,11 @@ const Pagination = ({albumsPerPage, totalAlb, paginate}) => {
         pageNumber.push(i)
     }
     return (
-        <div>
+        <ButtonGroup color="primary" aria-label="outlined primary button group">
             {pageNumber.map(num => (
-                <div  key={num}><Button onClick={() => paginate(num)} href="!#">{num}</Button></div>
+                <div key={num}><Button onClick={() => paginate(num)}>{num}</Button></div>
             ))}
-        </div>
+        </ButtonGroup>
     );
 };
 

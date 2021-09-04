@@ -1,17 +1,18 @@
 import React from 'react';
+import {List, ListItem, Table} from "@material-ui/core";
 
 const Users = ({albums}) => {
     return (
-        <div    >
-            {albums.map(a=>(
-                <div key={a.id}>
-                    id - {a.id}
-                    <br/>
-                    title - {a.title}
-                </div>
+        <Table>
+            {albums.map(a => (
+                <List key={a.id}>
+                    <ListItem>id - {a.id}</ListItem>
+                    <ListItem>title - {a.title}</ListItem>
+
+                </List>
             ))}
-            
-        </div>
+
+        </Table>
     );
 };
 

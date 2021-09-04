@@ -13,13 +13,12 @@ function App() {
 
     useEffect(() => {
         const fetchAlbums = async () => {
-            const res = await axios.get('https://jsonplaceholder.typicode.com/albums')
+            const res = await axios.get(`https://jsonplaceholder.typicode.com/albums?page=${currentPage}`)
             setAlbums(res.data)
 
         }
         fetchAlbums()
-    }, [])
-    console.log(albums);
+    }, [currentPage])
 
     const LastAlbum = currentPage * albumsPerPage
     const FirstAlbum = LastAlbum - albumsPerPage
