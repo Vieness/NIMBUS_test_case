@@ -1,25 +1,40 @@
-import logo from './logo.svg';
 import './App.css';
+import {useEffect, useState} from "react";
+import axios from "axios";
+import Users from "./components/Users";
+import Pagination from "./components/Pagination";
+import {Container} from "@material-ui/core";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [albums, setAlbums] = useState([])
+    const [currentPage, setCurrentAlbum] = useState([1])
+    const [albumsPerPage] = useState([20])
+
+    useEffect(() => {
+        const fetchAlbums = async () => {
+            const res = await axios.get('https://jsonplaceholder.typicode.com/albums')
+            setAlbums(res.data)
+
+        }
+        fetchAlbums()
+    }, [])
+    console.log(albums);
+
+    const LastAlbum = currentPage * albumsPerPage
+    const FirstAlbum = LastAlbum - albumsPerPage
+    const currentAlbums = albums.slice(FirstAlbum, LastAlbum)
+
+    const paginate = (pageNumber) => setCurrentAlbum(pageNumber)
+
+    return (
+        <div className="App">
+            <Container maxWidth="sm">
+                <Users albums={currentAlbums}/>
+                <Pagination albumsPerPage={albumsPerPage} totalAlb={albums.length} paginate={paginate}/>
+            </Container>
+        </div>
+    );
 }
 
 export default App;
