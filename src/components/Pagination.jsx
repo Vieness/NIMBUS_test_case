@@ -6,6 +6,7 @@ const Pagination = ({albumsPerPage, totalAlb, paginate}) => {
     for (let i = 1; i <= Math.ceil(totalAlb / albumsPerPage); i++) {
         pageNumber.push(i)
     }
+
     return (
         <ButtonGroup color="primary" aria-label="outlined primary button group">
             {pageNumber.map(num => (

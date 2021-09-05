@@ -8,10 +8,8 @@ const Users = ({albums}) => {
                 <List key={a.id}>
                     <ListItem>id - {a.id}</ListItem>
                     <ListItem>title - {a.title}</ListItem>
-
                 </List>
             ))}
-
         </Table>
     );
 };
